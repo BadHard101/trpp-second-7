@@ -1,30 +1,32 @@
-package ru.mirea.trpp_second_7.controllers;
+package ru.mirea.trpp.controllers;
 
 import com.opencsv.bean.CsvToBeanBuilder;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
-import ru.mirea.trpp_second_7.entity.Movie;
+import ru.mirea.trpp.entity.Movie;
 
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Optional;
 
-/** РљРѕРЅС‚СЂРѕР»Р»РµСЂ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ С„РёР»СЊРјР°РјРё. */
+/** Контроллер для работы с фильмами. */
 @Controller("/movie")
 public class MovieController {
 
-    /** РЎРїРёСЃРѕРє С„РёР»СЊРјРѕРІ. */
+    /** Список фильмов. */
     private final List<Movie> movieList;
 
-    /** РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ. */
+    /** Конструктор. */
     public MovieController() {
-        movieList = new CsvToBeanBuilder<Movie>(new InputStreamReader(this.getClass().getResourceAsStream("/MOCK_DATA.csv"))).withType(Movie.class).build().parse();
+        movieList = new CsvToBeanBuilder<Movie>(new InputStreamReader(
+                this.getClass().getResourceAsStream("/MOCK_DATA.csv")
+        )).withType(Movie.class).build().parse();
     }
 
     /**
-     * РџРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє С„РёР»СЊРјРѕРІ.
-     * @return СЃРїРёСЃРѕРє С„РёР»СЊРјРѕРІ
+     * Получить список фильмов.
+     * @return список фильмов
      */
     @Get()
     public HttpResponse<List<Movie>> getMovie() {
@@ -32,9 +34,9 @@ public class MovieController {
     }
 
     /**
-     * РќР°Р№С‚Рё С„РёР»СЊРј РїРѕ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂСѓ.
-     * @param id РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ С„РёР»СЊРјР°
-     * @return Р¤РёР»СЊРј, РµСЃР»Рё РµСЃС‚СЊ, РёРЅР°С‡Рµ 404 РѕС€РёР±РєР°
+     * Найти фильм по идентификатору.
+     * @param id идентификатор фильма
+     * @return Фильм, если есть, иначе 404 ошибка
      */
     @Get("/{id}")
     public HttpResponse<Movie> findById(Long id) {

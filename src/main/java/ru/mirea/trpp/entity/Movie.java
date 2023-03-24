@@ -1,4 +1,4 @@
-package ru.mirea.trpp_second_7.entity;
+package ru.mirea.trpp.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.opencsv.bean.CsvBindByName;
@@ -6,29 +6,29 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-/** РЎСѓС‰РЅРѕСЃС‚СЊ СЃРѕС‚СЂСѓРґРЅРёРєР°. */
+/** Сущность сотрудника. */
 @Getter
 @Setter
 @ToString
 public class Movie {
 
-    /** РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ. */
+    /** Идентификатор. */
     @JsonProperty("id")
     @CsvBindByName(column = "id")
     private Long id;
-    /** РќР°Р·РІР°РЅРёРµ С„РёР»СЊРјР°. */
+    /** Название фильма. */
     @JsonProperty("name")
     @CsvBindByName(column = "name")
     private String name;
-    /** Р–Р°РЅСЂ */
+    /** Жанр. */
     @JsonProperty("genre")
     @CsvBindByName(column = "genre")
     private String genre;
-    /** РЎС‚СѓРґРёСЏ. */
+    /** Студия. */
     @JsonProperty("studio")
     @CsvBindByName(column = "studio")
     private String studio;
-    /** Р”Р°С‚Р° РІС‹С…РѕРґР° РІ РїСЂРѕРєР°С‚. */
+    /** Дата выхода в прокат. */
     @JsonProperty("created")
     @CsvBindByName(column = "created")
     private String created;
